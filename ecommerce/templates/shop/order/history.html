@@ -1,0 +1,48 @@
+<!-- templates/shop/order/history.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}my order{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>my order</h1>
+
+    {% if orders %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order number</th>
+                    <th>date</th>
+                    <th>state</th>
+                    <th>lump sum</th>
+                    <th>operate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <span class="badge bg-{% if order.status == 'completed' %}success{% elif order.status == 'cancelled' %}danger{% else %}warning{% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+                    </td>
+                    <td>¥{{ order.total_price }}</td>
+                    <td>
+                        <a href="{% url 'shop:order_detail' order.id %}" class="btn btn-sm btn-outline-primary">Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        You don't have any orders yet. <a href="{% url 'shop:product_list' %}" class="alert-link">Browse products</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

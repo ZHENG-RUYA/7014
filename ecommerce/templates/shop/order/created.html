@@ -1,0 +1,29 @@
+<!-- templates/shop/order/created.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Order created successfully{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h2>Order created successfully！</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">Your order number is: <strong>#{{ order.id }}</strong></p>
+                    <p>We have received your order and will process it as soon as possible.</p>
+                    <p>Total order amount: <strong>¥{{ order.total_price }}</strong></p>
+
+                    <div class="mt-4">
+                        <a href="{% url 'shop:order_detail' order.id %}" class="btn btn-primary me-2">View order details</a>
+                        <a href="{% url 'shop:home' %}" class="btn btn-outline-secondary">Return to home page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

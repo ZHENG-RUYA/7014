@@ -1,0 +1,46 @@
+<!-- templates/shop/wishlist.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}my wish list{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>my wish list</h1>
+
+    {% if wishlist_items %}
+    <div class="row">
+        {% for item in wishlist_items %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <a href="{{ item.product.get_absolute_url }}">
+                    <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ item.product.get_absolute_url }}" class="text-decoration-none">{{ item.product.name }}</a>
+                    </h5>
+                    <p class="card-text">¥{{ item.product.price }}</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <form action="{% url 'shop:cart_add' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn btn-primary btn-sm">add to the cart</button>
+                    </form>
+                    <a href="{% url 'shop:remove_from_wishlist' item.product.id %}" class="btn btn-outline-danger btn-sm mt-2">
+                        <i class="bi bi-heart-fill"></i> remove
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        Your wishlist is empty. <a href="{% url 'shop:product_list' %}" class="alert-link">Browse products</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
