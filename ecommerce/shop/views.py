@@ -69,7 +69,7 @@ def wishlist(request):
 def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     Wishlist.objects.get_or_create(user=request.user, product=product)
-    messages.success(request, f"已添加 {product.name} 到心愿单")
+    messages.success(request, f"Added {product.name} To Wishlist")
     return redirect('shop:wishlist')
 
 
@@ -77,7 +77,7 @@ def add_to_wishlist(request, product_id):
 def remove_from_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     Wishlist.objects.filter(user=request.user, product=product).delete()
-    messages.success(request, f"已从心愿单移除 {product.name}")
+    messages.success(request, f"Removed from wishlist {product.name}")
     return redirect('shop:wishlist')
 
 
@@ -144,7 +144,7 @@ def checkout(request):
             # 清空会话中的购物车
             cart.clear()
 
-            messages.success(request, '订单已创建成功！')
+            messages.success(request, 'The order has been created successfully!')
             return render(request, 'shop/order/created.html', {'order': order})
     else:
         # 预填充用户地址
