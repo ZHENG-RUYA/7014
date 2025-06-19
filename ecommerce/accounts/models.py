@@ -6,8 +6,8 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     USER_TYPE_CHOICES = (
-        (1, '普通用户'),
-        (2, '管理员'),
+        (1, 'Ordinary user'),
+        (2, 'administrator'),
     )
 
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=1)
