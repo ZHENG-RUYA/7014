@@ -13,9 +13,9 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ['user_type', 'is_staff', 'is_superuser']
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('个人信息', {'fields': ('first_name', 'last_name', 'email', 'address', 'phone')}),
-        ('权限', {'fields': ('user_type', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('重要日期', {'fields': ('last_login', 'date_joined')}),
+        ('personal information', {'fields': ('first_name', 'last_name', 'email', 'address', 'phone')}),
+        ('Permissions', {'fields': ('user_type', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
