@@ -45,4 +45,4 @@ class OrderAdmin(admin.ModelAdmin):
     def total_price(self, obj):
         return obj.total_price
 
-    total_price.short_description = '总金额'
+    total_price.short_description = 'lump sum'
