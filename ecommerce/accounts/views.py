@@ -13,7 +13,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, '            messages.success(request, 'Registration successful!')
+          messages.success(request, 'Registration successful!')
 ')
             return redirect('accounts:login')
     else:
