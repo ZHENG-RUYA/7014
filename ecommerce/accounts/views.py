@@ -13,7 +13,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, '注册成功！')
+            messages.success(request, '            messages.success(request, 'Registration successful!')
+')
             return redirect('accounts:login')
     else:
         form = CustomUserCreationForm()
@@ -30,7 +31,7 @@ def user_login(request):
                 return redirect('admin:index')
             return redirect('shop:home')
         else:
-            messages.error(request, '用户名或密码错误')
+            messages.error(request, 'Wrong username or password')
     return render(request, 'accounts/login.html')
 
 @login_required
@@ -44,7 +45,7 @@ def profile(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, '个人信息已更新')
+            messages.success(request, 'Personal information has been updated')
             return redirect('accounts:profile')
     else:
         form = CustomUserChangeForm(instance=request.user)
@@ -56,8 +57,8 @@ def change_password(request):
         form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # 保持用户登录状态
-            messages.success(request, '密码已成功更改')
+            login(request, user)  
+            messages.success(request, 'Password changed successfully')
             return redirect('accounts:profile')
     else:
         form = CustomPasswordChangeForm(request.user)
