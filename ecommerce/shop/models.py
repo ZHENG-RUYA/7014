@@ -78,11 +78,11 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('pending', '待处理'),
-        ('processing', '处理中'),
-        ('shipped', '已发货'),
-        ('completed', '已完成'),
-        ('cancelled', '已取消'),
+        ('pending', 'Pending'),
+        ('processing', 'Processing'),
+        ('shipped', 'Shipped'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Canceled'),
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
